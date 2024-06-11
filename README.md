@@ -8,7 +8,7 @@
 
 #### Yusef Zaman [Instagram](https://www.instagram.com/yusefzaman?igsh=MXVrN20yZGZhNzRxMg==)| [GitHub](https://github.com/yusefzaman) | [LinkedIn](https://www.linkedin.com/in/yusefzaman)
 
-#### Talal Alshwaier
+#### Talal Alshwaier [GitHub](https://github.com/Talal146) | [LinkedIn](https://www.linkedin.com/in/talal-alshwaier/)
 
 
 ---
