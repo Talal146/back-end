@@ -25,6 +25,7 @@ app.use('/posts', PostRouter)
 app.use('/plans', PlansRouter)
 app.use('/Workouts', WorkoutsRouter)
 app.use('/users', UserRouter)
+
 app.use('/reviews', ReviewsRouter)
 
 // app.use('/', (req, res) => {
