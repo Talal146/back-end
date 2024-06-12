@@ -2,10 +2,10 @@ const router = require('express').Router()
 const controller = require('../controllers/PlansController')
 const middleware = require('../middleware')
 
-router.get('/Plans', controller.GetPlans)
+router.get('/plans', controller.GetPlans)
 
 router.post(
-  '/Plans',
+  '/plans',
   middleware.stripToken,
   middleware.verifyToken,
   controller.CreateWorkout
