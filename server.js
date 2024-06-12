@@ -6,8 +6,7 @@ const AuthRouter = require('./routes/AuthRouter')
 const PostRouter = require('./routes/PostRouter')
 const PlansRouter = require('./routes/PlansRouter')
 const WorkoutsRouter = require('./routes/WorkoutsRouter')
-const TrainerRouter = require('./routes/TrainerRouter')
-const TraineeRouter = require('./routes/TraineeRouter')
+const UserRouter = require('./routes/UserRouter')
 const ReviewsRouter = require('./routes/ReviewsRouter')
 
 const PORT = process.env.PORT || 3001
@@ -25,8 +24,7 @@ app.use('/auth', AuthRouter)
 app.use('/posts', PostRouter)
 app.use('/plans', PlansRouter)
 app.use('/Workouts', WorkoutsRouter)
-app.use('/trainer', TrainerRouter)
-app.use('/trainee', TraineeRouter)
+app.use('/user', UserRouter)
 app.use('/reviews', ReviewsRouter)
 
 app.use('/', (req, res) => {
