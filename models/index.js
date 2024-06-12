@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const TraineeSchema = require('./Trainee')
+const TraineeSchema = require('./User')
 const TrainerSchema = require('./Trainer')
 const WorkoutSchema = require('./Workout')
 const PlanSchema = require('./Plan')
