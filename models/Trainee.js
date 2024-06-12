@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const TraineeSchema = new Schema(
+const traineeSchema = new Schema(
   {
     name: { type: String, required: true },
     contact: { type: String, required: true },
@@ -12,4 +12,4 @@ const TraineeSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = TraineeSchema
+module.exports = traineeSchema
