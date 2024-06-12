@@ -30,7 +30,7 @@ app.use('/trainee', TraineeRouter)
 app.use('/reviews', ReviewsRouter)
 
 app.use('/', (req, res) => {
-  res.send(`Hi Yusuf! I'm Watching you`)
+  res.send(`Hi Yusef! I'm Watching you`)
 })
 
 app.listen(PORT, () => {
