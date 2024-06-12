@@ -1,15 +1,17 @@
 const { Schema } = require('mongoose')
 
-const traineeSchema = new Schema(
+const UserSchema = new Schema(
   {
     name: { type: String, required: true },
     contact: { type: String, required: true },
     email: { type: String, required: true },
     passwordDigest: { type: String, required: true },
-    Weight: { type: Number, required: true },
-    height: { type: Number, required: true }
+    weight: { type: Number },
+    height: { type: Number },
+    trainer: { Boolean, required: true },
+    trainees: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   },
   { timestamps: true }
 )
 
-module.exports = traineeSchema
+module.exports = UserSchema
