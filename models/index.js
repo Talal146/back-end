@@ -1,19 +1,16 @@
 const mongoose = require('mongoose')
-const TraineeSchema = require('./User')
-const TrainerSchema = require('./Trainer')
+const UserSchema = require('./User')
 const WorkoutSchema = require('./Workout')
 const PlanSchema = require('./Plan')
 const ReviewSchema = require('./Review')
 
-const Trainee = mongoose.model('Trainee', TraineeSchema)
-const Trainer = mongoose.model('Trainer', TrainerSchema)
+const User = mongoose.model('User', UserSchema)
 const Workout = mongoose.model('Workout', WorkoutSchema)
 const Plan = mongoose.model('Plan', PlanSchema)
 const Review = mongoose.model('Review', ReviewSchema)
 
 module.exports = {
-  Trainer,
-  Trainee,
+  User,
   Workout,
   Plan,
   Review
