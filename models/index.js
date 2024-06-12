@@ -1,11 +1,20 @@
 const mongoose = require('mongoose')
-const userSchema = require('./User')
-const postSchema = require('./Trainer')
+const TraineeSchema = require('./Trainee')
+const TrainerSchema = require('./Trainer')
+const WorkoutSchema = require('./Workout')
+const PlanSchema = require('./Plan')
+const ReviewSchema = require('./Review')
 
-const User = mongoose.model('User', userSchema)
-const Post = mongoose.model('Post', postSchema)
+const Trainee = mongoose.model('Trainee', TraineeSchema)
+const Trainer = mongoose.model('Trainer', TrainerSchema)
+const Workout = mongoose.model('Workout', WorkoutSchema)
+const Plan = mongoose.model('Plan', PlanSchema)
+const Review = mongoose.model('Review', ReviewSchema)
 
 module.exports = {
-  User,
-  Post
+  Trainer,
+  Trainee,
+  Workout,
+  Plan,
+  Review
 }
