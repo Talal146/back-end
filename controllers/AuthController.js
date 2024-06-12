@@ -1,28 +1,57 @@
 const { User } = require('../models')
 const middleware = require('../middleware')
 
-const Register = async (req, res) => {
+const register = async (req, res) => {
   try {
+    let userObj
     // Extracts the necessary fields from the request body
-    const { email, password, name } = req.body
+    if (req.body.trainer) {
+      userObj = {
+        name: req.body.name,
+        contact: req.body.contact,
+        email: req.body.email,
+        // passwordDigest: req.body.passwordDigest,
+        trainer: true,
+        trainees: []
+      }
+    } else {
+      userObj = {
+        name: req.body.name,
+        contact: req.body.contact,
+        email: req.body.email,
+        // passwordDigest: req.body.passwordDigest,
+        weight: req.body.weight,
+        height: req.body.height,
+        trainer: false
+      }
+    }
+    console.log('printing password')
+    const { password } = req.body
     // Hashes the provided password
     console.log({ password })
     let passwordDigest = await middleware.hashPassword(password)
     // Checks if there has already been a user registered with that email
-    let existingUser = await User.findOne({ email })
+    let existingUser = await User.findOne({ email: userObj.email })
+    console.log('before if statement')
     if (existingUser) {
+      console.log('true existing user')
       return res
         .status(400)
         .send('A user with that email has already been registered!')
     } else {
+      console.log('false existing user')
       // Creates a new user
-      const user = await User.create({ name, email, passwordDigest })
+      const finalUserObj = { ...userObj, passwordDigest }
+      console.log('finalUserObj ==> ', JSON.stringify(finalUserObj, null, 2))
+      const user = await User.create({ ...userObj, passwordDigest })
       // Sends the user as a response
       res.send(user)
     }
   } catch (error) {
     throw error
   }
+  // let user = await User.create(userObj)
+  // res.send(user)
 }
 
 const Login = async (req, res) => {
@@ -94,7 +123,7 @@ const CheckSession = async (req, res) => {
 }
 
 module.exports = {
-  Register,
+  register,
   Login,
   UpdatePassword,
   CheckSession

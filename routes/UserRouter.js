@@ -2,11 +2,6 @@ const router = require('express').Router()
 const controller = require('../controllers/userCtrl')
 const middleware = require('../middleware')
 
-router.post(
-  '/',
-  middleware.stripToken,
-  middleware.verifyToken,
-  controller.CreatePost
-)
+router.post('/register', controller.register)
 
 module.exports = router

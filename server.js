@@ -24,12 +24,13 @@ app.use('/auth', AuthRouter)
 app.use('/posts', PostRouter)
 app.use('/plans', PlansRouter)
 app.use('/Workouts', WorkoutsRouter)
-app.use('/user', UserRouter)
+app.use('/users', UserRouter)
+
 app.use('/reviews', ReviewsRouter)
 
-app.use('/', (req, res) => {
-  res.send(`Hi Yusef! I'm Watching you`)
-})
+// app.use('/', (req, res) => {
+//   res.send(`Hi Yusef! I'm Watching you`)
+// })
 
 app.listen(PORT, () => {
   console.log(`Running Express server on Port ${PORT} . . .`)
