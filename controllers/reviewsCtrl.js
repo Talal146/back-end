@@ -16,10 +16,10 @@ async function createReview(req, res) {
     req.body.user = req.user._id
     req.body.userName = req.user.name
 
-    const review = await Review.create(req.body)
+    const newReview = await Review.create(req.body)
     workout.review.push(review._id)
     await workout.save()
-    res.redirect(`/categories/items/show/${workout._id}`)
+    res.send(newReview)
   } catch (err) {
     console.log(err)
   }
@@ -30,7 +30,11 @@ async function deleteReview(req, res) {
     const itemId = req.body.itemId
     const userId = req.user._id
     const review = await Review.findByIdAndDelete(req.params.id, { userId })
-    res.redirect(`/categories/items/show/${itemId}`)
+    res.send({
+      msg: 'Review Deleted',
+      payload: req.params.review_id,
+      status: 'Ok'
+    })
   } catch (err) {
     console.log(err)
   }
@@ -42,7 +46,7 @@ async function updateReview(req, res) {
     const updatedReview = await Review.findByIdAndUpdate(req.params.id, {
       reviewContent: req.body.reviewContent
     })
-    res.redirect(`/categories/items/show/${itemId}`)
+    res.send(updateReview)
   } catch (err) {
     console.log(err)
   }
