@@ -11,9 +11,10 @@ const reviewSchema = new Schema(
     },
     trainee: {
       type: Schema.Types.ObjectId,
-      ref: 'Trainee'
+      ref: 'Trainee',
+      required: true
     },
-    name: String,
+    name: String
   },
   {
     timestamps: true
