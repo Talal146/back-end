@@ -21,5 +21,13 @@ router.post(
   middleware.verifyToken,
   workoutCtrl.createReview
 )
+router.get('/reviews/:review_id', workoutCtrl.getReview)
+
+router.put(
+  '/reviews/:review_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  workoutCtrl.updateReview
+)
 
 module.exports = router
