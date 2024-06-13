@@ -30,4 +30,11 @@ router.put(
   workoutCtrl.updateReview
 )
 
+router.delete(
+  '/reviews/:review_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  workoutCtrl.deleteReview
+)
+
 module.exports = router
