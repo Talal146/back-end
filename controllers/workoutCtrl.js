@@ -68,9 +68,34 @@ async function createReview(req, res) {
   }
 }
 
+const getReview = async (req, res) => {
+  try {
+    const reviews = await Review.find({})
+    res.send(reviews)
+  } catch (error) {
+    throw error
+  }
+}
+
+async function updateReview(req, res) {
+  try {
+    console.log(req.body)
+
+    const updatedReview = await Review.findByIdAndUpdate(req.params.review_id, {
+      reviewContent: req.body.reviewContent,
+      reviewRating: req.body.reviewRating
+    })
+    res.send(updatedReview)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   index,
   create,
   delete: deleteWorkout,
-  createReview
+  createReview,
+  getReview,
+  updateReview
 }
