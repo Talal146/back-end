@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/auth', AuthRouter)
 app.use('/posts', PostRouter)
 app.use('/plans', PlansRouter)
-app.use('/Workouts', WorkoutsRouter)
+app.use('/workouts', WorkoutsRouter)
 app.use('/users', UserRouter)
 
 app.use('/reviews', ReviewsRouter)
