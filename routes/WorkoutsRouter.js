@@ -13,7 +13,7 @@ router.delete(
   '/:id',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.delete
+  workoutCtrl.deleteWorkout
 )
 
 module.exports = router
