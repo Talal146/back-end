@@ -91,11 +91,23 @@ async function updateReview(req, res) {
   }
 }
 
+async function deleteReview(req, res) {
+  const review = await Review.deleteOne({
+    review_id: req.params.id
+  })
+  res.send({
+    msg: 'Review Deleted',
+    payload: req.params.review_id,
+    status: 'Ok'
+  })
+}
+
 module.exports = {
   index,
   create,
   delete: deleteWorkout,
   createReview,
   getReview,
-  updateReview
+  updateReview,
+  deleteReview
 }
