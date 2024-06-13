@@ -13,8 +13,7 @@ const reviewSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Trainee',
       required: true
-    },
-    name: String
+    }
   },
   {
     timestamps: true

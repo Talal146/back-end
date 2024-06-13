@@ -1,4 +1,5 @@
 const { Workout } = require('../models')
+const { Review } = require('../models')
 // const middleware = require('../middleware')
 
 async function index(req, res) {
@@ -48,8 +49,28 @@ async function deleteWorkout(req, res) {
   })
 }
 
+async function createReview(req, res) {
+  try {
+    const workout = await Workout.findById(req.params.workout_id).populate(
+      'reviews'
+    )
+    // req.body.trainee = req.user._id
+    // req.body.userName = req.user.name
+
+    console.log(`workout ${workout}`)
+
+    const newReview = await Review.create(req.body)
+    workout.reviews.push(newReview._id)
+    await workout.save()
+    res.send(newReview)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 module.exports = {
   index,
   create,
-  delete: deleteWorkout
+  delete: deleteWorkout,
+  createReview
 }

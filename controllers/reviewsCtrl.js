@@ -1,5 +1,5 @@
 const { Review } = require('../models')
-const { Workout } = require('../models')
+// const { Workout } = require('../models')
 
 const getReview = async (req, res) => {
   try {
@@ -10,20 +10,20 @@ const getReview = async (req, res) => {
   }
 }
 
-async function createReview(req, res) {
-  try {
-    const workout = await Workout.findById(req.params.id)
-    req.body.user = req.user._id
-    req.body.userName = req.user.name
+// async function createReview(req, res) {
+//   try {
+//     const workout = await Workout.findById(req.params.id).populate('reviews')
+//     req.body.trainee = req.user._id
+//     // req.body.userName = req.user.name
 
-    const newReview = await Review.create(req.body)
-    workout.review.push(review._id)
-    await workout.save()
-    res.send(newReview)
-  } catch (err) {
-    console.log(err)
-  }
-}
+//     const newReview = await Review.create(req.body)
+//     workout.reviews.push(newReview._id)
+//     await workout.save()
+//     res.send(newReview)
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
 
 async function deleteReview(req, res) {
   try {
@@ -54,7 +54,7 @@ async function updateReview(req, res) {
 
 module.exports = {
   getReview,
-  createReview,
+  // createReview,
   deleteReview,
   updateReview
 }

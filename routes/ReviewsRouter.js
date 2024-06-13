@@ -4,12 +4,12 @@ const middleware = require('../middleware')
 
 router.get('/workouts/reviews', controller.getReview)
 
-router.post(
-  '/workouts/reviews/:review_id',
-  middleware.stripToken,
-  middleware.verifyToken,
-  controller.createReview
-)
+// router.post(
+//   '/workouts/reviews/:review_id',
+//   middleware.stripToken,
+//   middleware.verifyToken,
+//   controller.createReview
+// )
 
 router.put(
   '/workouts/reviews/:review_id',
