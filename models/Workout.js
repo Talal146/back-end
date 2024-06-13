@@ -21,7 +21,8 @@ const WorkoutSchema = new Schema(
     weight: {
       type: Number,
       required: true
-    }
+    },
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]
   },
   { timestamps: true }
 )
