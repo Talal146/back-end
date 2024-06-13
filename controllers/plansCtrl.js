@@ -12,12 +12,7 @@ const getPlans = async (req, res) => {
 
 async function createPlan(req, res) {
   try {
-    const plan = await Plan.findById(req.params.id)
-    
     await Plan.create(req.body)
-const newPlan = []
-plan.bo
-
   } catch (err) {
     console.log(err)
   }

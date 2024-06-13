@@ -1,19 +1,13 @@
-const { Workout } = require('../models/Workout')
-const middleware = require('../middleware')
+const { Workout } = require('../models')
+// const middleware = require('../middleware')
 
 async function index(req, res) {
   try {
-    let workouts = await Workout.find({}).res.render('workouts/index', {
-      title: 'All Workouts',
-      workouts
-    })
+    let workouts = await Workout.find({})
+    // TODO return json object with all the workouts
   } catch (error) {
     console.error('Error fetching workouts:', error)
   }
-}
-
-function newWorkout(req, res) {
-  res.render('workouts/new', { title: 'Add Workout', errorMsg: '' })
 }
 
 async function create(req, res) {
@@ -23,21 +17,21 @@ async function create(req, res) {
       workout.name = workout.name.toUpperCase()
     }
     if (req.body.machine) {
-      workout.machine = workout.machine.toString()
+      workout.machine = workout.machine.toUpperCase()
     }
     if (req.body.weight) {
-      workout.weight = workout.weight.parsInt()
+      workout.weight = parseInt(workout.weight)
     }
     if (req.body.reps) {
-      workout.reps = workout.reps.parsInt()
+      workout.reps = parseInt(workout.reps)
     }
     if (req.body.sets) {
-      workout.sets = workout.sets.parsInt()
+      workout.sets = parseInt(workout.sets)
     }
 
     const newWorkout = await workout.save()
-    console.log(newWorkout)
-    res.redirect(`/workouts/${newWorkout._id}`)
+    console.log(`newWorkout ==> ${newWorkout}`)
+    res.send(newWorkout)
   } catch (error) {
     console.error('Error creating workout', error)
   }
@@ -48,13 +42,11 @@ async function deleteWorkout(req, res) {
     _id: req.params.id,
     user: req.user._id
   })
-
-  res.redirect('/workouts')
+  // TODO Send back something
 }
 
 module.exports = {
   index,
-  new: newWorkout,
   create,
   delete: deleteWorkout
 }
