@@ -1,121 +1,60 @@
-const Workout = require('../models/Workout')
-const mongoose = require('mongoose')
+const { Workout } = require('../models/Workout')
+const middleware = require('../middleware')
 
-// get all workouts
-const getWorkouts = async (req, res) => {
-  const user_id = req.user._id
-  const workouts = await Workout.find({ user_id }).sort({ createdAt: -1 })
-  res.status(200).json(workouts)
-}
-
-// get a single workout
-const getWorkout = async (req, res) => {
-  const { id } = req.params
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such workout' })
-  }
-
-  const workout = await Workout.findById(id)
-
-  if (!workout) {
-    return res.status(404).json({ error: 'No such workout' })
-  }
-
-  res.status(200).json(workout)
-}
-
-// create a new workout
-const createWorkout = async (req, res) => {
-  const { title, machine, weight, reps, sets } = req.body
-
-  // method found on stack over flow
-  let emptyFields = []
-
-  if (!title) {
-    emptyFields.push('title')
-  }
-  if (!machine) {
-    emptyFields.push('machine')
-  }
-
-  if (!weight) {
-    emptyFields.push('weight')
-  }
-
-  if (!reps) {
-    emptyFields.push('reps')
-  }
-  if (!sets) {
-    emptyFields.push('sets')
-  }
-
-  if (emptyFields.length > 0) {
-    return res
-      .status(400)
-      .json({ error: 'Please fill in all the field', emptyFields }) // return will not allow the next code to continue/run
-  }
-
-  //add doc to db
+async function index(req, res) {
   try {
-    const user_id = req.user._id
-    const workout = await Workout.create({
-      title,
-      machine,
-      weight,
-      reps,
-      sets,
-      user_id
+    let workouts = await Workout.find({}).res.render('workouts/index', {
+      title: 'All Workouts',
+      workouts
     })
-    res.status(200).json(workout)
   } catch (error) {
-    res.status(400).json({ error: error.message })
+    console.error('Error fetching workouts:', error)
   }
 }
 
-// delete a workout
-const deleteWorkout = async (req, res) => {
-  const { id } = req.params
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such workout' })
-  }
-  const workout = await Workout.findOneAndDelete({ _id: id })
-
-  if (!workout) {
-    return res.status(400).json({ error: 'No such workout' })
-  }
-
-  res.status(200).json(workout)
+function newWorkout(req, res) {
+  res.render('workouts/new', { title: 'Add Workout', errorMsg: '' })
 }
 
-// update a workout
-
-const updateWorkout = async (req, res) => {
-  const { id } = req.params
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such workout' })
-  }
-
-  const workout = await Workout.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body //overwrites the old document by the body
+async function create(req, res) {
+  try {
+    const workout = new Workout(req.body)
+    if (workout.name) {
+      workout.name = workout.name.toUpperCase()
     }
-  )
+    if (req.body.machine) {
+      workout.machine = workout.machine.toString()
+    }
+    if (req.body.weight) {
+      workout.weight = workout.weight.parsInt()
+    }
+    if (req.body.reps) {
+      workout.reps = workout.reps.parsInt()
+    }
+    if (req.body.sets) {
+      workout.sets = workout.sets.parsInt()
+    }
 
-  if (!workout) {
-    return res.status(400).json({ error: 'No such workout' })
+    const newWorkout = await workout.save()
+    console.log(newWorkout)
+    res.redirect(`/workouts/${newWorkout._id}`)
+  } catch (error) {
+    console.error('Error creating workout', error)
   }
+}
 
-  res.status(200).json(workout)
+async function deleteWorkout(req, res) {
+  const workout = await Workout.deleteOne({
+    _id: req.params.id,
+    user: req.user._id
+  })
+
+  res.redirect('/workouts')
 }
 
 module.exports = {
-  getWorkouts,
-  getWorkout,
-  createWorkout,
-  deleteWorkout,
-  updateWorkout
+  index,
+  new: newWorkout,
+  create,
+  delete: deleteWorkout
 }
