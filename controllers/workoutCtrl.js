@@ -39,10 +39,13 @@ async function create(req, res) {
 
 async function deleteWorkout(req, res) {
   const workout = await Workout.deleteOne({
-    _id: req.params.id,
-    user: req.user._id
+    workout_id: req.params.id
   })
-  res.send({ msg: 'Post Deleted', payload: req.params.post_id, status: 'Ok' })
+  res.send({
+    msg: 'Post Deleted',
+    payload: req.params.workout_id,
+    status: 'Ok'
+  })
 }
 
 module.exports = {

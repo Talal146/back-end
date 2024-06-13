@@ -7,13 +7,13 @@ router.post(
   '/',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.create
+  workoutCtrl.create 
 )
 router.delete(
-  '/:id',
+  '/:workout_id',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.deleteWorkout
+  workoutCtrl.delete
 )
 
 module.exports = router
