@@ -13,12 +13,13 @@ const getPlans = async (req, res) => {
 async function createPlan(req, res) {
   try {
     await Plan.create(req.body)
+    res.send(req.body)
   } catch (err) {
     console.log(err)
   }
 }
 
 module.exports = {
-  getPlan,
+  getPlans,
   createPlan
 }
