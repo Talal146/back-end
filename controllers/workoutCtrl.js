@@ -42,7 +42,7 @@ async function deleteWorkout(req, res) {
     _id: req.params.id,
     user: req.user._id
   })
-  // TODO Send back something
+  res.send({ msg: 'Post Deleted', payload: req.params.post_id, status: 'Ok' })
 }
 
 module.exports = {
