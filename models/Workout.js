@@ -1,6 +1,6 @@
-const Schema = mongoose.Schema
+const { Schema } = require('mongoose')
 
-const workoutSchema = new Schema(
+const WorkoutSchema = new Schema(
   {
     title: {
       type: String,
@@ -30,4 +30,4 @@ const workoutSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Workout', workoutSchema)
+module.exports = WorkoutSchema
