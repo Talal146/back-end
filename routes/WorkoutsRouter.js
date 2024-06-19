@@ -9,12 +9,19 @@ router.post(
   middleware.verifyToken,
   workoutCtrl.create
 )
+router.put(
+  '/:workout_id',
+  middleware.stripToken,
+  middleware.verifyToken,
+  workoutCtrl.updateWorkout
+)
 router.delete(
   '/:workout_id',
   middleware.stripToken,
   middleware.verifyToken,
   workoutCtrl.delete
 )
+
 router.post(
   '/:workout_id/reviews',
   middleware.stripToken,
@@ -22,14 +29,12 @@ router.post(
   workoutCtrl.createReview
 )
 router.get('/reviews/:review_id', workoutCtrl.getReview)
-
 router.put(
   '/reviews/:review_id',
   middleware.stripToken,
   middleware.verifyToken,
   workoutCtrl.updateReview
 )
-
 router.delete(
   '/reviews/:review_id',
   middleware.stripToken,
