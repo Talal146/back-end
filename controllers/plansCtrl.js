@@ -6,7 +6,7 @@ const getPlans = async (req, res) => {
     const plans = await Plan.find({})
     res.send(plans)
   } catch (error) {
-    throw error
+    console.error('Error fetching plans:', error)
   }
 }
 
