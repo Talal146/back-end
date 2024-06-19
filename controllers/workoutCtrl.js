@@ -5,7 +5,7 @@ const { Review } = require('../models')
 async function index(req, res) {
   try {
     let workouts = await Workout.find({})
-    // TODO return json object with all the workouts
+    res.send(workouts)
   } catch (error) {
     console.error('Error fetching workouts:', error)
   }
