@@ -49,6 +49,26 @@ async function deleteWorkout(req, res) {
   })
 }
 
+async function updateWorkout(req, res) {
+  try {
+    console.log(req.body)
+
+    const updateWorkout = await Workout.findByIdAndUpdate(
+      req.params.workout_id,
+      {
+        title: req.body.title,
+        machine: req.body.machine,
+        reps: req.body.reps,
+        sets: req.body.sets,
+        weight: req.body.weight
+      }
+    )
+    res.send(updateWorkout)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 async function createReview(req, res) {
   try {
     const workout = await Workout.findById(req.params.workout_id).populate(
@@ -109,5 +129,6 @@ module.exports = {
   createReview,
   getReview,
   updateReview,
-  deleteReview
+  deleteReview,
+  updateWorkout
 }
