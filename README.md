@@ -20,17 +20,12 @@
 
 ## **_Technologies used_**
 
-### - Front-end
-
-- React
-
 ### - Back-end
 
 - MongoDB
 - Express
 - node.js
-- Mongoose
-- EJS
+- JavaScript
 
 ---
 
