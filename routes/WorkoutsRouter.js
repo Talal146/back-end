@@ -1,45 +1,45 @@
 const router = require('express').Router()
 const middleware = require('../middleware')
-const workoutCtrl = require('../controllers/workoutCtrl')
+const workoutsCtrl = require('../controllers/workoutsCtrl')
 
-router.get('/', workoutCtrl.index)
+router.get('/', workoutsCtrl.getWorkout)
 router.post(
   '/',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.create
+  workoutsCtrl.create
 )
 router.put(
   '/:workout_id',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.updateWorkout
+  workoutsCtrl.updateWorkout
 )
 router.delete(
   '/:workout_id',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.delete
+  workoutsCtrl.delete
 )
 
 router.post(
   '/:workout_id/reviews',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.createReview
+  workoutsCtrl.createReview
 )
-router.get('/reviews/:review_id', workoutCtrl.getReview)
+router.get('/reviews/:review_id', workoutsCtrl.getReview)
 router.put(
   '/reviews/:review_id',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.updateReview
+  workoutsCtrl.updateReview
 )
 router.delete(
   '/reviews/:review_id',
   middleware.stripToken,
   middleware.verifyToken,
-  workoutCtrl.deleteReview
+  workoutsCtrl.deleteReview
 )
 
 module.exports = router
