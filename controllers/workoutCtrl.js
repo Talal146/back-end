@@ -2,7 +2,7 @@ const { Workout } = require('../models')
 const { Review } = require('../models')
 // const middleware = require('../middleware')
 
-async function index(req, res) {
+async function getAllWorkouts(req, res) {
   try {
     let workouts = await Workout.find({})
     res.send(workouts)
@@ -88,7 +88,7 @@ async function createReview(req, res) {
   }
 }
 
-const getReview = async (req, res) => {
+const getAllReviews = async (req, res) => {
   try {
     const reviews = await Review.find({})
     res.send(reviews)
@@ -123,11 +123,11 @@ async function deleteReview(req, res) {
 }
 
 module.exports = {
-  index,
+  getAllWorkouts,
   create,
   delete: deleteWorkout,
   createReview,
-  getReview,
+  getAllReviews,
   updateReview,
   deleteReview,
   updateWorkout
