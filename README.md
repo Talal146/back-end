@@ -22,7 +22,7 @@
 
 ### - Front-end
 
-#### - React
+- React
 
 ### - Back-end
 
