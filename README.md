@@ -49,7 +49,7 @@
 
 ---
 
-### **_ER Diagram_**
+### **_ERD_**
 
 ![alt text](image.png)
 
@@ -63,14 +63,15 @@
 
 ### **_Future Updates_**
 
-####
+1)	Integration with an AI chatbot to recommend workout plans and diet recommendations
 
-####
+2)	The ability to connect with gyms to that your workout plan is synced to their system and any trainer can train you with that gym plan rather than only one trainer and gym.
 
-####
+3)	A meal plan service that will allow the user to connect with grocery stores to order what they will need to make those meals.
 
 ---
 
 ### **_Credits_**
+All credits go to the talented and dedicated teaching staff of GA Bahrain for enabling us and empowering us with the knowledge and skills to create a MERN stack app.
 
 ---
