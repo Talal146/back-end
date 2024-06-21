@@ -9,9 +9,9 @@ const reviewSchema = new Schema(
       max: 5,
       default: 5
     },
-    trainee: {
+    user: {
       type: Schema.Types.ObjectId,
-      ref: 'Trainee',
+      ref: 'User',
       required: true
     }
   },
