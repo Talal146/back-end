@@ -14,7 +14,7 @@
 
 ### **_Description_**
 
-#### We are building an app that connects trainers and trainees, it allows instructors to create workouts and then create personalised weekly plans for each trainee.
+#### We are building a gym app that allows the user to curate weekly workout plans catering to their fitness needs and goals.
 
 ---
 
@@ -31,11 +31,9 @@
 
 ### **_Getting Started_**
 
-##### Trainers and users can create an account using the sign-up page.
+##### The user can create an account using the sign-up page.
 
-##### Trianers will then be navigated to a page where they can create workouts and personalised plans.
-
-##### Trainees will then be navigated to a view where they can see their assigned workout plan details and click on each to get details.
+##### The user will then be navigated to a page where they can create workouts and personalised plans.
 
 ### **_Wireframe_**
 
