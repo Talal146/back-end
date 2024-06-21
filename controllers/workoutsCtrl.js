@@ -13,7 +13,6 @@ async function getOneWorkouts(req, res) {
 	const workoutId = req.params.workoutId;
 	const workouts = await Workout.findById(workoutId);
 	res.send(workouts);
-	//http://localhost:3001/places/:placeId
 }
 
 async function createOneWorkout(req, res) {
