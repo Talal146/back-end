@@ -9,7 +9,7 @@ async function getAllWorkouts(req, res) {
 		console.error('Error fetching workouts:', error);
 	}
 }
-async function getOneWorkouts(req, res) {
+async function getOneWorkout(req, res) {
 	const workoutId = req.params.workoutId;
 	const workouts = await Workout.findById(workoutId);
 	res.send(workouts);
@@ -137,5 +137,5 @@ module.exports = {
 	updateOneReview,
 	deleteOneReview,
 	updateOneWorkout,
-	getOneWorkouts,
+	getOneWorkout,
 };

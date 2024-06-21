@@ -10,7 +10,7 @@ router.post(
 	middleware.verifyToken,
 	workoutsCtrl.createOneWorkout
 );
-router.get('/:workoutId', workoutsCtrl.getOneWorkouts);
+router.get('/:workoutId', workoutsCtrl.getOneWorkout);
 router.put(
 	'/:workout_id',
 	middleware.stripToken,
