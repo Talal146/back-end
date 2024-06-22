@@ -25,6 +25,7 @@ router.delete(
 );
 
 router.get('/:workoutId/reviews', workoutsCtrl.getAllReviews);
+
 router.post(
 	'/:workout_id/reviews',
 	middleware.stripToken,
