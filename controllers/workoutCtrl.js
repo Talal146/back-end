@@ -9,13 +9,8 @@ async function getAllWorkouts(req, res) {
     console.error('Error fetching workouts:', error)
   }
 }
-async function getOneWorkout(req, res) {
-  const workoutId = req.params.workoutId
-  const workouts = await Workout.findById(workoutId)
-  res.send(workouts)
-}
 
-async function createOneWorkout(req, res) {
+async function create(req, res) {
   try {
     const workout = new Workout(req.body)
     if (workout.name) {
@@ -42,7 +37,7 @@ async function createOneWorkout(req, res) {
   }
 }
 
-async function deleteOneWorkout(req, res) {
+async function deleteWorkout(req, res) {
   const workout = await Workout.deleteOne({
     workout_id: req.params.id
   })
@@ -53,7 +48,7 @@ async function deleteOneWorkout(req, res) {
   })
 }
 
-async function updateOneWorkout(req, res) {
+async function updateWorkout(req, res) {
   try {
     console.log(req.body)
 
@@ -73,12 +68,11 @@ async function updateOneWorkout(req, res) {
   }
 }
 
-async function createOneReview(req, res) {
+async function createReview(req, res) {
   try {
     const workout = await Workout.findById(req.params.workout_id).populate(
       'reviews'
     )
-
     console.log(`workout ${workout}`)
 
     const newReview = await Review.create(req.body)
@@ -92,18 +86,14 @@ async function createOneReview(req, res) {
 
 const getAllReviews = async (req, res) => {
   try {
-    const workoutId = req.params.workoutId
-    if (!workoutId) {
-      return res.status(400).send('Missing workout ID in request')
-    }
-    const workout = await Workout.findById(workoutId).populate('reviews')
-    res.send(workout.reviews)
+    const reviews = await Review.find({})
+    res.send(reviews)
   } catch (error) {
     throw error
   }
 }
 
-async function updateOneReview(req, res) {
+async function updateReview(req, res) {
   try {
     console.log(req.body)
 
@@ -117,7 +107,7 @@ async function updateOneReview(req, res) {
   }
 }
 
-async function deleteOneReview(req, res) {
+async function deleteReview(req, res) {
   const review = await Review.deleteOne({
     review_id: req.params.id
   })
@@ -130,12 +120,11 @@ async function deleteOneReview(req, res) {
 
 module.exports = {
   getAllWorkouts,
-  createOneWorkout,
-  deleteOneWorkout,
-  createOneReview,
+  create,
+  delete: deleteWorkout,
+  createReview,
   getAllReviews,
-  updateOneReview,
-  deleteOneReview,
-  updateOneWorkout,
-  getOneWorkout
+  updateReview,
+  deleteReview,
+  updateWorkout
 }
